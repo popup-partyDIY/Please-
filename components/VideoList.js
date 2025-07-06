@@ -1,5 +1,8 @@
 export default function VideoList({ videos }) {
-  if (!videos.length)
+  // Always default to an empty array if videos is undefined or null
+  const safeVideos = Array.isArray(videos) ? videos : [];
+
+  if (!safeVideos.length)
     return (
       <div
         style={{
@@ -25,12 +28,16 @@ export default function VideoList({ videos }) {
         alignItems: "center",
       }}
     >
-      {videos.map((v, i) => {
-        const match = v.url.match(
-          /(?:youtube\.com\/.*v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-        );
-        const vid = match ? match[1] : null;
-        return vid ? (
+      {safeVideos.map((v, i) => {
+        let embedUrl = v.url;
+
+        // If it's not already an embed link, convert it
+        const idMatch = v.url.match(/(?:embed\/|v=|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+        if (!v.url.includes("embed") && idMatch) {
+          embedUrl = `https://www.youtube.com/embed/${idMatch[1]}`;
+        }
+
+        return (
           <div
             key={i}
             style={{
@@ -48,7 +55,7 @@ export default function VideoList({ videos }) {
             <iframe
               width="100%"
               height="360"
-              src={`https://www.youtube.com/embed/${vid}`}
+              src={embedUrl}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -71,7 +78,7 @@ export default function VideoList({ videos }) {
               {v.url}
             </div>
           </div>
-        ) : null;
+        );
       })}
     </div>
   );
