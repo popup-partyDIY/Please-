@@ -69,7 +69,7 @@
   text-shadow: 1px 2px 10px #000a;
   text-align: center;
 }
-input[type="text"], input[type="url"] {
+.inputBox {
   font-size: 1.02em;
   padding: 10px 16px;
   border-radius: 8px;
@@ -81,7 +81,7 @@ input[type="text"], input[type="url"] {
   margin-bottom: 14px;
   transition: border-color 0.2s;
 }
-input[type="text"]:focus, input[type="url"]:focus {
+.inputBox:focus {
   border-color: #ff3d00;
 }
 button {
@@ -103,97 +103,4 @@ button {
 }
 button:hover, button:focus {
   background: linear-gradient(90deg, #ff6a00 0%, #ff3d00 100%);
-  box-shadow: 0 8px 32px #ff910022, 0 1px 3px #0009;
-  transform: scale(1.07);
-}
-/* Embers and Sparks Animation */
-.embers {
-  position: absolute;
-  left: 50%;
-  bottom: 12vh;
-  width: 300px;
-  height: 160px;
-  pointer-events: none;
-  z-index: 2;
-  overflow: visible;
-}
-.embers::before,
-.embers::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.7;
-  pointer-events: none;
-}
-.embers::before {
-  /* Small orange ember */
-  left: 35px; width: 7px; height: 7px; background: #ff9100;
-  animation: emberUp1 2.3s linear infinite;
-}
-.embers::after {
-  /* Larger red ember */
-  left: 170px; width: 12px; height: 12px; background: #ff3d00;
-  opacity: 0.48;
-  animation: emberUp2 2.1s linear infinite;
-}
-@keyframes emberUp1 {
-  0% { transform: translateY(0) scale(1) rotate(-10deg); opacity:0.78; }
-  33% { transform: translateY(-48px) scale(0.89) rotate(13deg); }
-  75% { transform: translateY(-110px) scale(0.7) rotate(20deg); opacity:0.42; }
-  100% { transform: translateY(-140px) scale(0.6) rotate(-22deg); opacity:0; }
-}
-@keyframes emberUp2 {
-  0% { transform: translateY(0) scale(1.1) rotate(7deg); opacity:0.55; }
-  50% { transform: translateY(-55px) scale(0.93) rotate(-5deg); }
-  80% { transform: translateY(-115px) scale(0.73) rotate(-18deg); opacity:0.34; }
-  100% { transform: translateY(-160px) scale(0.64) rotate(22deg); opacity:0; }
-}
-.e1 {
-  left: 80px; width: 6px; height: 6px; background: #ffd180; opacity: 0.48;
-  position: absolute;
-  border-radius: 50%;
-  animation: emberExtra1 2.4s linear infinite 0.8s;
-  pointer-events: none;
-}
-.e2 {
-  left: 210px; width: 8px; height: 8px; background: #fff3e0; opacity: 0.42;
-  position: absolute;
-  border-radius: 50%;
-  animation: emberExtra2 2.9s linear infinite 1.2s;
-  pointer-events: none;
-}
-.e3 {
-  left: 130px; width: 10px; height: 10px; background: #ffab40; opacity: 0.4;
-  position: absolute;
-  border-radius: 50%;
-  animation: emberExtra3 2.7s linear infinite 0.4s;
-  pointer-events: none;
-}
-@keyframes emberExtra1 {
-  0% { transform: translateY(0) scale(1.08) rotate(4deg); opacity:0.48;}
-  60% { transform: translateY(-70px) scale(0.88);}
-  90% { transform: translateY(-120px) scale(0.62); opacity:0.09;}
-  100% { transform: translateY(-140px) scale(0.58); opacity:0;}
-}
-@keyframes emberExtra2 {
-  0% { transform: translateY(0) scale(0.98) rotate(-6deg);}
-  55% { transform: translateY(-60px) scale(0.85);}
-  100% { transform: translateY(-170px) scale(0.65); opacity:0;}
-}
-@keyframes emberExtra3 {
-  0% { transform: translateY(0) scale(1.15) rotate(2deg);}
-  80% { transform: translateY(-130px) scale(0.78); opacity:0.13;}
-  100% { transform: translateY(-170px) scale(0.62); opacity:0;}
-}
-@media (max-width: 600px) {
-  .container {
-    padding: 0 6px;
-  }
-  .card {
-    padding: 24px 3vw;
-    max-width: 99vw;
-  }
-  .header {
-    font-size: 1.37em;
-  }
-}
+  box-shadow: 0 8px 32px #ff910022, 0
