@@ -1,5 +1,8 @@
 export default function VideoList({ videos }) {
-  if (!videos.length)
+  // Always default to an empty array if videos is undefined or null
+  const safeVideos = Array.isArray(videos) ? videos : [];
+
+  if (!safeVideos.length)
     return (
       <div
         style={{
@@ -25,11 +28,11 @@ export default function VideoList({ videos }) {
         alignItems: "center",
       }}
     >
-      {videos.map((v, i) => {
+      {safeVideos.map((v, i) => {
         let embedUrl = v.url;
 
         // If it's not already an embed link, convert it
-        const idMatch = v.url.match(/(?:embed\/|v=|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+        const idMatch = v.url.match(/(?:embed\/|v=|youtu\.be\/|v=|shorts\/)([a-zA-Z0-9_-]{11})/);
         if (!v.url.includes("embed") && idMatch) {
           embedUrl = `https://www.youtube.com/embed/${idMatch[1]}`;
         }
