@@ -1,64 +1,82 @@
-import { useState } from "react";
-import AddVideoForm from "../components/AddVideoForm";
-import VideoList from "../components/VideoList";
-
-export default function Home() {
-  // Jasper's Rust gameplay video preloaded (embed link!)
-  const [videos, setVideos] = useState([
-    { url: "https://www.youtube.com/embed/a3kzCNMZdvY" }
-  ]);
-
-  function handleAddVideo(url) {
-    setVideos([{ url }, ...videos]);
-  }
-
+export default function VideoList({ videos }) {
+  if (!videos.length)
+    return (
+      <div
+        style={{
+          color: "#ffe0b2",
+          marginTop: 38,
+          fontSize: 18,
+          fontWeight: "bold",
+          textShadow: "1px 2px 6px #000a",
+        }}
+      >
+        No videos yet. Add your first Rust clip!
+      </div>
+    );
   return (
     <div
       style={{
-        minHeight: "100vh",
-        background: `#15100c url('/cover.jpg') center/cover no-repeat`,
+        width: "100%",
+        maxWidth: 740,
+        margin: "40px auto 0",
         display: "flex",
         flexDirection: "column",
+        gap: 36,
         alignItems: "center",
-        paddingTop: 40,
-        paddingBottom: 80,
       }}
     >
-      <div
-        style={{
-          background: "rgba(22,17,13,0.85)",
-          borderRadius: 24,
-          boxShadow: "0 8px 32px #0009",
-          padding: "32px 24px",
-          maxWidth: 440,
-          textAlign: "center",
-        }}
-      >
-        <img
-          src="/cover.jpg"
-          alt="Jasper's Rust Clips"
-          style={{
-            width: "100%",
-            maxWidth: 380,
-            borderRadius: 20,
-            boxShadow: "0 6px 16px #000a",
-            marginBottom: 24,
-          }}
-        />
-        <AddVideoForm onAdd={handleAddVideo} />
-      </div>
-      {/* Custom caption above videos */}
-      <div style={{
-        color: "#ff9800",
-        fontWeight: "bold",
-        fontSize: "1.15em",
-        marginTop: 24,
-        marginBottom: -8,
-        textShadow: "1px 2px 6px #000a"
-      }}>
-        Survive the night, trust no one, and always keep a rock handy—Jasper’s back in Rust!
-      </div>
-      <VideoList videos={videos} />
+      {videos.map((v, i) => {
+        let embedUrl = v.url;
+
+        // If it's not already an embed link, convert it
+        const idMatch = v.url.match(/(?:embed\/|v=|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+        if (!v.url.includes("embed") && idMatch) {
+          embedUrl = `https://www.youtube.com/embed/${idMatch[1]}`;
+        }
+
+        return (
+          <div
+            key={i}
+            style={{
+              background: "rgba(20,16,12,0.85)",
+              borderRadius: 16,
+              padding: 16,
+              boxShadow: "0 4px 18px #0008",
+              width: "90%",
+              maxWidth: 680,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <iframe
+              width="100%"
+              height="360"
+              src={embedUrl}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                borderRadius: 12,
+                boxShadow: "0 2px 10px #0007",
+                width: "100%",
+                maxWidth: 640,
+              }}
+            ></iframe>
+            <div
+              style={{
+                color: "#ffcc80",
+                marginTop: 8,
+                fontSize: 15,
+                wordBreak: "break-all",
+              }}
+            >
+              {v.url}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
