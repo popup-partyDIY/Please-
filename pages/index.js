@@ -3,7 +3,10 @@ import AddVideoForm from "../components/AddVideoForm";
 import VideoList from "../components/VideoList";
 
 export default function Home() {
-  const [videos, setVideos] = useState([]);
+  // Jasper's Rust gameplay video preloaded
+  const [videos, setVideos] = useState([
+    { url: "https://youtube.com/shorts/a3kzCNMZdvY?si=uThBoH3qNUizt3Ao" }
+  ]);
 
   function handleAddVideo(url) {
     setVideos([{ url }, ...videos]);
@@ -43,6 +46,17 @@ export default function Home() {
           }}
         />
         <AddVideoForm onAdd={handleAddVideo} />
+      </div>
+      {/* Custom caption above videos */}
+      <div style={{
+        color: "#ff9800",
+        fontWeight: "bold",
+        fontSize: "1.15em",
+        marginTop: 24,
+        marginBottom: -8,
+        textShadow: "1px 2px 6px #000a"
+      }}>
+        Survive the night, trust no one, and always keep a rock handy—Jasper’s back in Rust!
       </div>
       <VideoList videos={videos} />
     </div>
