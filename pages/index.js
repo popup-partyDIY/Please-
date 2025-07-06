@@ -20,7 +20,6 @@ export default function Home() {
         <title>Jasper's Rust Clips</title>
       </Head>
       <div className={styles.bg}>
-        {/* EMBERS and Campfire Glow */}
         <div className={styles.embers}>
           <span className={styles.e1}></span>
           <span className={styles.e2}></span>
