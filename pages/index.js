@@ -3,9 +3,9 @@ import AddVideoForm from "../components/AddVideoForm";
 import VideoList from "../components/VideoList";
 
 export default function Home() {
-  // Jasper's Rust gameplay video preloaded
+  // Jasper's Rust gameplay video preloaded (embed link!)
   const [videos, setVideos] = useState([
-    { url: "https://youtube.com/shorts/a3kzCNMZdvY?si=uThBoH3qNUizt3Ao" }
+    { url: "https://www.youtube.com/embed/a3kzCNMZdvY" }
   ]);
 
   function handleAddVideo(url) {
