@@ -1,1 +1,199 @@
-
+.bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #15100c url('/cover.jpg') center/cover no-repeat;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 100px;
+}
+.campfireGlow {
+  position: absolute;
+  left: 50%;
+  bottom: 13vh;
+  width: 300px;
+  height: 130px;
+  background: radial-gradient(ellipse at center, #ff6a00 0%, #f33 60%, transparent 90%);
+  filter: blur(50px) brightness(1.7);
+  opacity: 0.5;
+  transform: translateX(-50%);
+  animation: fireflicker 2.5s infinite alternate cubic-bezier(0.4,0,0.2,1);
+  z-index: 1;
+}
+@keyframes fireflicker {
+  0% { opacity: 0.4; filter: blur(60px) brightness(1.4); }
+  80% { opacity: 0.7; filter: blur(40px) brightness(2.1); }
+  100% { opacity: 0.35; filter: blur(70px) brightness(1.1); }
+}
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  margin-top: 32px;
+  background: rgba(28, 21, 13, 0.82);
+  border-radius: 28px;
+  padding: 38px 22px 28px 22px;
+  max-width: 420px;
+  box-shadow: 0 12px 38px #000b, 0 2px 16px #ff910021;
+  backdrop-filter: blur(4px);
+  border: 1px solid #ff910020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px #000a;
+  margin-bottom: 14px;
+}
+.header {
+  font-family: 'Russo One', sans-serif;
+  color: #ff9100;
+  font-size: 2.1em;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  margin-top: 0;
+  text-shadow: 1px 3px 12px #000a;
+}
+.caption {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  color: #ff9800;
+  font-weight: bold;
+  font-size: 1.08em;
+  text-shadow: 1px 2px 10px #000a;
+  text-align: center;
+}
+input[type="text"], input[type="url"] {
+  font-size: 1.02em;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 2px solid #ff9100;
+  outline: none;
+  background: #18130d;
+  color: #ffe0b2;
+  width: 98%;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+input[type="text"]:focus, input[type="url"]:focus {
+  border-color: #ff3d00;
+}
+button {
+  font-size: 1.1em;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff9100 60%, #ff3d00 100%);
+  color: #18130d;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 32px;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  box-shadow: 0 4px 18px #ff910044, 0 1px 3px #0009;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.22s;
+  outline: none;
+  position: relative;
+  z-index: 2;
+}
+button:hover, button:focus {
+  background: linear-gradient(90deg, #ff6a00 0%, #ff3d00 100%);
+  box-shadow: 0 8px 32px #ff910022, 0 1px 3px #0009;
+  transform: scale(1.07);
+}
+/* Embers and Sparks Animation */
+.embers {
+  position: absolute;
+  left: 50%;
+  bottom: 12vh;
+  width: 300px;
+  height: 160px;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}
+.embers::before,
+.embers::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.embers::before {
+  /* Small orange ember */
+  left: 35px; width: 7px; height: 7px; background: #ff9100;
+  animation: emberUp1 2.3s linear infinite;
+}
+.embers::after {
+  /* Larger red ember */
+  left: 170px; width: 12px; height: 12px; background: #ff3d00;
+  opacity: 0.48;
+  animation: emberUp2 2.1s linear infinite;
+}
+@keyframes emberUp1 {
+  0% { transform: translateY(0) scale(1) rotate(-10deg); opacity:0.78; }
+  33% { transform: translateY(-48px) scale(0.89) rotate(13deg); }
+  75% { transform: translateY(-110px) scale(0.7) rotate(20deg); opacity:0.42; }
+  100% { transform: translateY(-140px) scale(0.6) rotate(-22deg); opacity:0; }
+}
+@keyframes emberUp2 {
+  0% { transform: translateY(0) scale(1.1) rotate(7deg); opacity:0.55; }
+  50% { transform: translateY(-55px) scale(0.93) rotate(-5deg); }
+  80% { transform: translateY(-115px) scale(0.73) rotate(-18deg); opacity:0.34; }
+  100% { transform: translateY(-160px) scale(0.64) rotate(22deg); opacity:0; }
+}
+.e1 {
+  left: 80px; width: 6px; height: 6px; background: #ffd180; opacity: 0.48;
+  position: absolute;
+  border-radius: 50%;
+  animation: emberExtra1 2.4s linear infinite 0.8s;
+  pointer-events: none;
+}
+.e2 {
+  left: 210px; width: 8px; height: 8px; background: #fff3e0; opacity: 0.42;
+  position: absolute;
+  border-radius: 50%;
+  animation: emberExtra2 2.9s linear infinite 1.2s;
+  pointer-events: none;
+}
+.e3 {
+  left: 130px; width: 10px; height: 10px; background: #ffab40; opacity: 0.4;
+  position: absolute;
+  border-radius: 50%;
+  animation: emberExtra3 2.7s linear infinite 0.4s;
+  pointer-events: none;
+}
+@keyframes emberExtra1 {
+  0% { transform: translateY(0) scale(1.08) rotate(4deg); opacity:0.48;}
+  60% { transform: translateY(-70px) scale(0.88);}
+  90% { transform: translateY(-120px) scale(0.62); opacity:0.09;}
+  100% { transform: translateY(-140px) scale(0.58); opacity:0;}
+}
+@keyframes emberExtra2 {
+  0% { transform: translateY(0) scale(0.98) rotate(-6deg);}
+  55% { transform: translateY(-60px) scale(0.85);}
+  100% { transform: translateY(-170px) scale(0.65); opacity:0;}
+}
+@keyframes emberExtra3 {
+  0% { transform: translateY(0) scale(1.15) rotate(2deg);}
+  80% { transform: translateY(-130px) scale(0.78); opacity:0.13;}
+  100% { transform: translateY(-170px) scale(0.62); opacity:0;}
+}
+@media (max-width: 600px) {
+  .container {
+    padding: 0 6px;
+  }
+  .card {
+    padding: 24px 3vw;
+    max-width: 99vw;
+  }
+  .header {
+    font-size: 1.37em;
+  }
+}
